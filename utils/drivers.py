@@ -10,6 +10,6 @@ def setup_driver_environ():
 def create_raw_driver():
     chrome_driver_dir = "libs/chromedriver"
     driver = webdriver.Chrome(chrome_driver_dir)
-    driver.maximize_window()
+    # driver.maximize_window()
     # driver.implicitly_wait(2)
     return driver

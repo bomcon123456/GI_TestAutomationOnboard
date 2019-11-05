@@ -7,7 +7,7 @@ from utils.bypass_onboard import bypass_onboard_expert
 class AdminLoginPage(BaseAdminPage):
     google_login_button = '.btn.btn-google.btn-lg.btn-social'
     email_next_button = '[jsname=\'k77Iif\'] .snByac'
-    password_next_button = '[jsname=\'k77Iif\'] .CwaK9'
+    password_next_button = '[jsname=\'k77Iif\'] .snByac'
     email_field = '#identifierId'
     password_field = 'input[name=\'password\']'
     user_panel = '.dropdown > a'

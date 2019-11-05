@@ -3,6 +3,7 @@ from actors.expert import Expert
 from pom.admin.admin_login_page import AdminLoginPage
 from pom.expert.expert_sign_up_page import ExpertSignUp
 from pom.expert.expert_home_page import ExpertHomepage
+from pom.expert.expert_work_page import ExpertWorkPage
 from utils.email_gen import generate_email
 
 if __name__ == '__main__':
@@ -19,3 +20,10 @@ if __name__ == '__main__':
 
     expert_home_page = ExpertHomepage(expert)
     expert_home_page.start_working()
+
+    start = input('awwef')
+    expert_work_page = ExpertWorkPage(expert)
+    expert_work_page.claim_question()
+
+# expert_time = 'div:nth-of-type(1) > .gi-ChatTimer-label'
+# asker_time = '.gi-WorkspaceTimer-label'

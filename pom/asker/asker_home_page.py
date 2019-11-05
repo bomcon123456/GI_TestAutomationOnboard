@@ -26,6 +26,6 @@ class AskerHomePage(BaseAskerPage):
                        'Aenean cursus, risus non sodales blandit, ' \
                        'dui nunc sagittis mi, ac gravida sapien magna at ipsum.'
         # Ask Max how to solve this without sleeping
-        time.sleep(2)
-        self.asker.find_element(self.query_field).send_keys(problem_text)
-        self.asker.find_element(self.start_query_button).click()
+        # time.sleep(2)
+        self.asker.get_waited_visible_element(self.query_field).send_keys(problem_text)
+        self.asker.get_waited_clickable_element(self.start_query_button).click()

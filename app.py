@@ -1,11 +1,21 @@
-from actors.asker import Asker
-from pom.asker.asker_sign_up_page import AskerSignUp
-from pom.asker.asker_home_page import AskerHomePage
+from actors.client import Client
+from actors.expert import Expert
+from pom.admin.admin_login_page import AdminLoginPage
+from pom.expert.expert_sign_up_page import ExpertSignUp
+from pom.expert.expert_home_page import ExpertHomepage
+from utils.email_gen import generate_email
 
 if __name__ == '__main__':
+    email = generate_email('troy')
+    password = 'MotConVit123!@'
 
-    asker = Asker()
-    # sign_up_page = SignUp(asker)
-    # sign_up_page.sign_up(email='testSelenium1@gmail.com', password='MotConVit123!@')
-    # home_page = HomePage(asker)
-    # home_page.login_and_query()
+    expert = Expert()
+    expert_signup_page = ExpertSignUp(expert)
+    expert_signup_page.sign_up(email, password)
+
+    admin = Client('https://admin-query.got-it.io/')
+    page = AdminLoginPage(admin)
+    page.login_and_approve_newest_expert()
+
+    expert_home_page = ExpertHomepage(expert)
+    expert_home_page.start_working()

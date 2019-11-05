@@ -36,10 +36,13 @@ class Client:
         return wait.until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locator)))
 
     def switch_to_default(self):
-        self.driver.switch_to.default_content()
+        self.driver.switch_to.window(self.main_window_handle)
 
     def switch_to_window(self, url):
         for handle in self.driver.window_handles:
             self.driver.switch_to.window(handle)
             if url in self.driver.current_url:
                 break
+
+    def go_to_hompage(self):
+        self.driver.get(self.base_url)

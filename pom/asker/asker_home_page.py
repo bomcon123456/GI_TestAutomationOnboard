@@ -7,7 +7,7 @@ class AskerHomePage(BaseAskerPage):
     query_field = 'textarea[name=\'text\']'
     start_query_button = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
 
-    def test(self):
+    def login_and_query(self):
         login_locator = '#test-login-button'
         user = 'input[name=\'email\']'
         password = 'input[name=\'password\']'

@@ -8,4 +8,4 @@ if __name__ == '__main__':
     # sign_up_page = SignUp(asker)
     # sign_up_page.sign_up(email='testSelenium1@gmail.com', password='MotConVit123!@')
     # home_page = HomePage(asker)
-    # home_page.test()
+    # home_page.login_and_query()

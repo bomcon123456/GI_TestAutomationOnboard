@@ -36,3 +36,10 @@ Implementation phases
 - Asker posts a question
 - Expert bids and claims the questions
 - Assert both asker and expert are in a chat session
+
+
+# TODO 05/11
+1. Rewrite feature, break down to small steps
+2. POM only consists driver, and all function will sit here
+3. Remove Asker, Expert, only need Client, Client -> DriverWrapper
+4. POM needs function checking if it is presenting

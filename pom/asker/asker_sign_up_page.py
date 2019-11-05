@@ -1,7 +1,7 @@
 from .base_asker_page import BaseAskerPage
 
 
-class SignUp(BaseAskerPage):
+class AskerSignUp(BaseAskerPage):
     login_locator = '#test-login-button'
     open_signup_text = 'Sign up'
     email_field = 'div[role=\'document\'] input[name=\'email\']'

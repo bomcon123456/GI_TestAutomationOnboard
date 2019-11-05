@@ -3,7 +3,7 @@ import time
 from .base_asker_page import BaseAskerPage
 
 
-class HomePage(BaseAskerPage):
+class AskerHomePage(BaseAskerPage):
     query_field = 'textarea[name=\'text\']'
     start_query_button = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
 

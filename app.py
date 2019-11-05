@@ -1,6 +1,6 @@
 from actors.asker import Asker
-from pom.asker.sign_up_page import SignUp
-from pom.asker.home_page import HomePage
+from pom.asker.asker_sign_up_page import AskerSignUp
+from pom.asker.asker_home_page import AskerHomePage
 
 if __name__ == '__main__':
 

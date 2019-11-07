@@ -6,6 +6,6 @@ class ExpertHomepage(BaseExpertPage):
     start_working_button = 'a[role=\'presentation\']'
 
     def start_working(self):
-        self.expert.go_to_hompage()
-        self.expert.get_waited_clickable_element(self.intro_skip_button).click()
-        self.expert.get_waited_clickable_element(self.start_working_button).click()
+        self.browser.go_to_hompage()
+        self.browser.get_waited_clickable_element(self.intro_skip_button).click()
+        self.browser.get_waited_clickable_element(self.start_working_button).click()

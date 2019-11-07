@@ -12,11 +12,11 @@ class AskerHomePage(BaseAskerPage):
         user = 'input[name=\'email\']'
         password = 'input[name=\'password\']'
         login_button = 'button#login-button'
-        self.asker.find_element(login_locator).click()
+        self.browser.find_element(login_locator).click()
         time.sleep(1)
-        self.asker.find_element(user).send_keys('askerSelenium2@gmail.com')
-        self.asker.find_element(password).send_keys('MotConVit123!@')
-        self.asker.find_element(login_button).click()
+        self.browser.find_element(user).send_keys('askerSelenium2@gmail.com')
+        self.browser.find_element(password).send_keys('MotConVit123!@')
+        self.browser.find_element(login_button).click()
         self.query()
 
     def query(self):
@@ -25,5 +25,5 @@ class AskerHomePage(BaseAskerPage):
                        'libero arcu cursus elit, a luctus felis lacus et orci. ' \
                        'Aenean cursus, risus non sodales blandit, ' \
                        'dui nunc sagittis mi, ac gravida sapien magna at ipsum.'
-        self.asker.get_waited_visible_element(self.query_field).send_keys(problem_text)
-        self.asker.get_waited_clickable_element(self.start_query_button).click()
+        self.browser.get_waited_visible_element(self.query_field).send_keys(problem_text)
+        self.browser.get_waited_clickable_element(self.start_query_button).click()

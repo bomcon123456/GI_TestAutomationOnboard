@@ -1,3 +1,3 @@
 class BaseAskerPage:
-    def __init__(self, asker):
-        self.asker = asker
+    def __init__(self, browser):
+        self.browser = browser

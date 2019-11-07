@@ -2,6 +2,7 @@ import json
 
 from .base_admin_page import BaseAdminPage
 from utils.bypass_onboard import bypass_onboard_expert
+from configs import (GMAIL_ACCOUNT, GMAIL_PASSWORD)
 
 
 class AdminLoginPage(BaseAdminPage):
@@ -16,9 +17,9 @@ class AdminLoginPage(BaseAdminPage):
 
     def _deal_with_google_window(self):
         self.client.switch_to_window(url='accounts.google')
-        self.client.get_waited_visible_element(self.email_field).send_keys('troy@gotitapp.co')
+        self.client.get_waited_visible_element(self.email_field).send_keys(GMAIL_ACCOUNT)
         self.client.find_element(self.email_next_button).click()
-        self.client.get_waited_visible_element(self.password_field).send_keys('MotConVit123')
+        self.client.get_waited_visible_element(self.password_field).send_keys(GMAIL_PASSWORD)
         self.client.get_waited_clickable_element(self.password_next_button).click()
         self.client.switch_to_default()
 

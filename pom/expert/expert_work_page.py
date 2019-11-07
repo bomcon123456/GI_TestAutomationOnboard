@@ -1,7 +1,7 @@
-from .base_expert_page import BaseExpertPage
+from pom.common.base_page import BasePage
 
 
-class ExpertWorkPage(BaseExpertPage):
+class ExpertWorkPage(BasePage):
     claim = 'a#claim-button'
     submit = 'button#confirm-claim-button'
 

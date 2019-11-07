@@ -36,6 +36,9 @@ class DriverWrapper:
     def find_elements(self, locator):
         return self.driver.find_elements_by_css_selector(locator)
 
+    def find_and_send_keys(self, locator, value):
+        self.driver.find_element_by_css_selector(locator).send_keys(value)
+
     def wait_until_invisible(self, locator, timeout=10):
         wait = WebDriverWait(self.driver, timeout)
         wait.until(expected_conditions.invisibility_of_element_located((By.CSS_SELECTOR, locator)))
@@ -57,5 +60,5 @@ class DriverWrapper:
             if url in self.driver.current_url:
                 break
 
-    def go_to_hompage(self):
+    def go_to_homepage(self):
         self.driver.get(self.base_url)

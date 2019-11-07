@@ -1,11 +1,11 @@
 import json
 
-from .base_admin_page import BaseAdminPage
-from utils.bypass_onboard import bypass_onboard_expert
 from configs import (GMAIL_ACCOUNT, GMAIL_PASSWORD)
+from pom.common.base_page import BasePage
+from utils.bypass_onboard import bypass_onboard_expert
 
 
-class AdminLoginPage(BaseAdminPage):
+class AdminLoginPage(BasePage):
     google_login_button = '.btn.btn-google.btn-lg.btn-social'
     email_next_button = '[jsname=\'k77Iif\'] .snByac'
     password_next_button = '[jsname=\'k77Iif\'] .snByac'
@@ -16,23 +16,23 @@ class AdminLoginPage(BaseAdminPage):
     first_expert = 'tr:nth-of-type(1) > td:nth-of-type(1) > a'
 
     def _deal_with_google_window(self):
-        self.client.switch_to_window(url='accounts.google')
-        self.client.get_waited_visible_element(self.email_field).send_keys(GMAIL_ACCOUNT)
-        self.client.find_element(self.email_next_button).click()
-        self.client.get_waited_visible_element(self.password_field).send_keys(GMAIL_PASSWORD)
-        self.client.get_waited_clickable_element(self.password_next_button).click()
-        self.client.switch_to_default()
+        self.browser.switch_to_window(url='accounts.google')
+        self.browser.get_waited_visible_element(self.email_field).send_keys(GMAIL_ACCOUNT)
+        self.browser.find_element(self.email_next_button).click()
+        self.browser.get_waited_visible_element(self.password_field).send_keys(GMAIL_PASSWORD)
+        self.browser.get_waited_clickable_element(self.password_next_button).click()
+        self.browser.switch_to_default()
 
     def _login(self):
-        self.client.get_waited_visible_element(self.google_login_button).click()
+        self.browser.get_waited_visible_element(self.google_login_button).click()
         self._deal_with_google_window()
 
     def _get_newest_expert_id(self):
-        self.client.get_waited_clickable_element(self.user_panel).click()
-        self.client.get_waited_visible_element(self.user_dropdown).click()
-        td = self.client.get_waited_visible_element(self.first_expert)
+        self.browser.get_waited_clickable_element(self.user_panel).click()
+        self.browser.get_waited_visible_element(self.user_dropdown).click()
+        td = self.browser.get_waited_visible_element(self.first_expert)
         expert_id = td.text
-        accesstoken_str = self.client.driver.execute_script("return window.localStorage.getItem('accesstoken')")
+        accesstoken_str = self.browser.driver.execute_script("return window.localStorage.getItem('accesstoken')")
         accesstoken_json = json.loads(accesstoken_str)
         access_token = accesstoken_json['access_token']
         return access_token, expert_id
@@ -41,4 +41,4 @@ class AdminLoginPage(BaseAdminPage):
         self._login()
         access_token, expert_id = self._get_newest_expert_id()
         bypass_onboard_expert(user_id=expert_id, access_token=access_token)
-        self.client.driver.quit()
+        self.browser.driver.quit()

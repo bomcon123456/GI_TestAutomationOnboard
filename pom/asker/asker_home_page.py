@@ -1,9 +1,9 @@
 import time
 
-from .base_asker_page import BaseAskerPage
+from pom.common.base_page import BasePage
 
 
-class AskerHomePage(BaseAskerPage):
+class AskerHomePage(BasePage):
     query_field = 'textarea[name=\'text\']'
     start_query_button = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
 

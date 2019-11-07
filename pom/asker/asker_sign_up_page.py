@@ -1,7 +1,7 @@
-from .base_asker_page import BaseAskerPage
+from pom.common.base_page import BasePage
 
 
-class AskerSignUp(BaseAskerPage):
+class AskerSignUp(BasePage):
     login_locator = '#test-login-button'
     open_signup_locator = '.u-marginTop-3.u-textCenter.u-textGray.u-textSmall > a[role=\'button\']'
     email_locator = 'div[role=\'document\'] input[name=\'email\']'

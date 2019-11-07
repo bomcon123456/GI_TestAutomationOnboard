@@ -1,8 +1,10 @@
 import requests
 
+from configs import API_EXPLAINER_URL
+
 
 def bypass_onboard_expert(user_id, access_token):
-    url = 'https://api-query.got-it.io/admin/explainers/' + user_id + '/subjects'
+    url = API_EXPLAINER_URL + user_id + '/subjects'
     data = {
         'subjects': [
             {
@@ -15,4 +17,4 @@ def bypass_onboard_expert(user_id, access_token):
         'x-gotit-vertical': 'query'
     }
     response = requests.put(url, json=data, headers=headers)
-    print(response.status_code)
+    assert response.status_code == 200

@@ -4,7 +4,7 @@ Feature: Implement happy path for QueryChat ask flow
   Scenario: Asker log in by signing up
     Given Asker accesses to the sign up modal
     When Asker inserts her/his email
-    And Askert inserts her/his password
+    And Asker inserts her/his password
     And Asker completes the sign up process
     Then Asker will be redirected to homepage signed in
 

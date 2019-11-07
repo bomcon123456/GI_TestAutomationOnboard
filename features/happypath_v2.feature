@@ -2,19 +2,18 @@ Feature: Implement happy path for QueryChat ask flow
 
   @asker_sign_up
   Scenario: Asker log in by signing up
-    Given Asker accesses to the sign up modal
-    When Asker inserts her/his email
-    And Asker inserts her/his password
+    Given Asker open the sign up modal
+    When Asker inserts her/his email and password
     And Asker completes the sign up process
     Then Asker will be redirected to homepage signed in
 
   @expert_sign_up
   Scenario: Expert log in by signing up
-    Given Expert accesses to the sign up dropdown
-    When Expert inserts her/his email
-    And Expert inserts her/his password
+    Given Expert open the sign up dropdown
+    When Expert inserts her/his email and password
     And Expert completes the sign up process
-    Then Expert will be redirected to homepage signed in
+    Then Admin will bypass onboarding for this expert
+    And Expert will be redirected to homepage signed in
 
   @happy_path_flow
   Scenario: Asker and Expert Sign up then match each other

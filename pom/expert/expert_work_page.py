@@ -1,10 +1,12 @@
-from pom.common.base_page import BasePage
+from pom.common.base.base_page import BasePage
 
 
 class ExpertWorkPage(BasePage):
-    claim = 'a#claim-button'
-    submit = 'button#confirm-claim-button'
+    claim_button_locator = 'a#claim_button_locator-button'
+    submit_button_locator = 'button#confirm-claim_button_locator-button'
 
-    def claim_question(self):
-        self.browser.get_waited_clickable_element(self.claim).click()
-        self.browser.get_waited_clickable_element(self.submit).click()
+    def click_claim_button(self):
+        self.browser.get_waited_clickable_element(self.claim_button_locator).click()
+
+    def click_submit_question(self):
+        self.browser.get_waited_clickable_element(self.submit_button_locator).click()

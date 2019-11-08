@@ -1,29 +1,21 @@
-import time
-
-from pom.common.base_page import BasePage
+from pom.common.base.base_page import BasePage
 
 
 class AskerHomePage(BasePage):
-    query_field = 'textarea[name=\'text\']'
-    start_query_button = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
+    question_field_locator = 'textarea[name=\'text\']'
+    connect_now_for_free_button_locator = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
+    proceed_button_locator = '[class=\'gi-Button gi-Button--primary u-width-100\']'
 
-    def login_and_query(self):
-        login_locator = '#test-login-button'
-        user = 'input[name=\'email\']'
-        password = 'input[name=\'password\']'
-        login_button = 'button#login-button'
-        self.browser.find_element(login_locator).click()
-        time.sleep(1)
-        self.browser.find_element(user).send_keys('askerSelenium2@gmail.com')
-        self.browser.find_element(password).send_keys('MotConVit123!@')
-        self.browser.find_element(login_button).click()
-        self.query()
+    def click_connect_now_for_free_button(self):
+        self.browser.get_waited_clickable_element(self.connect_now_for_free_button_locator).click()
 
-    def query(self):
+    def click_got_it_proceed(self):
+        self.browser.get_waited_clickable_element(self.proceed_button_locator).click()
+
+    def fill_query_form(self):
         problem_text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' \
                        'Donec bibendum, turpis dignissim lobortis dapibus, ' \
                        'libero arcu cursus elit, a luctus felis lacus et orci. ' \
                        'Aenean cursus, risus non sodales blandit, ' \
                        'dui nunc sagittis mi, ac gravida sapien magna at ipsum.'
-        self.browser.get_waited_visible_element(self.query_field).send_keys(problem_text)
-        self.browser.get_waited_clickable_element(self.start_query_button).click()
+        self.browser.get_waited_visible_element(self.question_field_locator).send_keys(problem_text)

@@ -1,7 +1,7 @@
 import json
 
 from configs import (GMAIL_ACCOUNT, GMAIL_PASSWORD)
-from pom.common.base_page import BasePage
+from pom.common.base.base_page import BasePage
 from utils.bypass_onboard import bypass_onboard_expert
 
 

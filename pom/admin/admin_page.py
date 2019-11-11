@@ -1,5 +1,7 @@
 import json
 
+from selenium.common.exceptions import (ElementClickInterceptedException, ElementClickInterceptedException)
+
 from dev_configs import (GMAIL_ACCOUNT, GMAIL_PASSWORD)
 from pom.common.base.base_page import BasePage
 from utils.bypass_onboard import bypass_onboard_expert
@@ -20,7 +22,13 @@ class AdminPage(BasePage):
         self.browser.get_waited_visible_element(self.email_field_locator).send_keys(GMAIL_ACCOUNT)
         self.browser.find_element(self.email_next_button_locator).click()
         self.browser.get_waited_visible_element(self.password_field_locator).send_keys(GMAIL_PASSWORD)
-        self.browser.get_waited_clickable_element(self.password_next_button_locator).click()
+        next_btn = None
+        while next_btn is None:
+            try:
+                next_btn = self.browser.get_waited_clickable_element(self.password_next_button_locator)
+            except (ElementClickInterceptedException, ElementClickInterceptedException):
+                pass
+        next_btn.click()
         self.browser.switch_to_default()
 
     def _login(self):

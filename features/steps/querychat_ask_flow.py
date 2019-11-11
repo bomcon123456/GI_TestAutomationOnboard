@@ -7,6 +7,8 @@ from pom.admin.admin_page import AdminPage
 from pom.asker.asker_home_page import AskerHomePage
 from pom.asker.asker_login_modal import AskerLoginModal
 from pom.asker.asker_signup_modal import AskerSignupModal
+from pom.asker.asker_problem_expert_intro_modal import AskerProblemExpertIntroModal
+from pom.asker.asker_problem_page import AskerProblemPage
 from pom.common.terms_conditions_modal import TermsConditionsModal
 from pom.expert.expert_home_page import ExpertHomepage
 from pom.expert.expert_work_page import ExpertWorkPage
@@ -52,7 +54,7 @@ def step_impl(context):
 
 @step("I press sign up")
 def step_impl(context):
-    context.asker_signup_modal.click_signup_link()
+    context.asker_signup_modal.click_signup_button()
 
 
 @then("Asker's TermsConditionsModal should be presented")
@@ -153,47 +155,30 @@ def step_impl(context):
 
 @when("I post a question")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When I post a question')
-
-
-@then("Expert should see that question")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then Expert should see that question')
+    context.asker_homepage.fill_query_form()
+    context.asker_homepage.click_connect_now_for_free_button()
 
 
 @when("Expert claims the question")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When Expert claims the question')
+    context.expert_workspace_page.click_claim_button()
+    context.expert_workspace_page.click_submit_button()
 
 
 @then("I should see ProblemExpertIntroModal")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then I should see ProblemExpertIntroModal')
+    asker_problem_expert_intro = AskerProblemExpertIntroModal(context.asker)
+    context.asker_problem_expert_intro = asker_problem_expert_intro
 
 
 @when("I press GotIt button")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When I press GotIt button')
+    if context.asker_problem_expert_intro.is_visible():
+        context.asker_problem_expert_intro.click_gotit_button()
 
 
 @then("I should be in the same room with that expert")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then I should be in the same room with that expert')
+    asker_problem_page = AskerProblemPage(context.asker)
+    assert asker_problem_page.is_active()
+    assert context.expert_workspace_page.is_matched()

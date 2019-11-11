@@ -21,4 +21,4 @@ class AskerSignupModal(BaseModal):
         self.browser.find_and_send_keys(self.confirm_password_locator, password)
 
     def click_signup_button(self):
-        self.browser.find_element(self.sign_up_button_locator).click()
+        self.browser.get_waited_clickable_element(self.sign_up_button_locator).click()

@@ -30,9 +30,8 @@ Feature: QueryChat ask flow
     And Expert press Start Working Button
     Then Expert should see the ExpertWorkspacePage
     # Start querying
-#    When I post a question
-#    Then Expert should see that question
-#    When Expert claims the question
-#    Then I should see ProblemExpertIntroModal
-#    When I press GotIt button
-#    Then I should be in the same room with that expert
+    When I post a question
+    And Expert claims the question
+    Then I should see ProblemExpertIntroModal
+    When I press GotIt button
+    Then I should be in the same room with that expert

@@ -44,5 +44,4 @@ fixture_registry = {
 
 def before_tag(context, tag):
     if tag.startswith("fixture."):
-        # USE-FIXTURE FOR TAGS: @fixture.browser, @fixture.webserver
         return use_fixture_by_tag(tag, context, fixture_registry)

@@ -1,6 +1,6 @@
 import requests
 
-from configs import API_EXPLAINER_URL
+from dev_configs import API_EXPLAINER_URL
 
 
 def bypass_onboard_expert(user_id, access_token):

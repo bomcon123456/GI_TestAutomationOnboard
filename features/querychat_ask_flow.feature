@@ -4,6 +4,7 @@ Feature: QueryChat ask flow
   I can ask question and receives answer from the expert.
 
 
+  @fixture.full_setup
   Scenario: I register and ask a question on QueryChat.
     Given I'm on AskerHomePage
     When I open AskerSignUpModal
@@ -35,4 +36,6 @@ Feature: QueryChat ask flow
     When I post a question
     Then Expert should see that question
     When Expert claims the question
+    Then I should see ProblemExpertIntroModal
+    When I press GotIt button
     Then I should be in the same room with that expert

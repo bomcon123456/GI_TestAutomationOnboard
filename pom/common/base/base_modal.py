@@ -9,8 +9,8 @@ class BaseModal:
 
     def is_visible(self):
         try:
-            element = self.browser.find_element(self.modal_locator)
-        except NoSuchElementException:
+            element = self.browser.get_waited_visible_element(self.modal_locator)
+        except (NoSuchElementException, TimeoutException):
             return False
         if element is not None:
             return element.is_displayed()

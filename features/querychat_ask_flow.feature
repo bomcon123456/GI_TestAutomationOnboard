@@ -5,7 +5,7 @@ Feature: QueryChat ask flow
 
 
   @fixture.full_setup
-  Scenario: I register and ask a question on QueryChat.
+  Scenario: I/Expert log(s) in by signing up
     Given I'm on AskerHomePage
     When I open AskerSignUpModal
     And I enter email

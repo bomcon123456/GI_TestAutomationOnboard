@@ -27,10 +27,10 @@ class ExpertHomepage(BasePage):
 
     def click_signup_link(self):
         self.browser.find_element(self.open_signup_locator).click()
-        # after click next, will be redirected to 'https://expert-query.got-it.io/onboarding'
 
     def click_signup_button(self):
         self.browser.get_waited_clickable_element(self.sign_up_button_locator).click()
+        # after click next, will be redirected to 'https://expert-query.got-it.io/onboarding'
 
     def click_intro_skip_button(self):
         self.browser.get_waited_clickable_element(self.intro_skip_button_locator).click()

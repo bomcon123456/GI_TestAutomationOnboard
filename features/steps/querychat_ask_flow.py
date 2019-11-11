@@ -1,5 +1,3 @@
-import time
-
 from behave import *
 
 from dev_configs import (ASKER_EMAIL_PREFIX, EXPERT_EMAIL_PREFIX, PASSWORD_COMMON)

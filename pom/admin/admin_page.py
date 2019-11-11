@@ -1,6 +1,6 @@
 import json
 
-from selenium.common.exceptions import (ElementClickInterceptedException, ElementClickInterceptedException)
+from selenium.common.exceptions import ElementClickInterceptedException
 
 from dev_configs import (GMAIL_ACCOUNT, GMAIL_PASSWORD)
 from pom.common.base.base_page import BasePage
@@ -26,7 +26,7 @@ class AdminPage(BasePage):
         while next_btn is None:
             try:
                 next_btn = self.browser.get_waited_clickable_element(self.password_next_button_locator)
-            except (ElementClickInterceptedException, ElementClickInterceptedException):
+            except ElementClickInterceptedException:
                 pass
         next_btn.click()
         self.browser.switch_to_default()

@@ -28,3 +28,4 @@ class AskerHomePage(BasePage):
         is_on_home_route = '/home' in self.browser.driver.current_url
         is_on_base_url = self.browser.driver.current_url == self.browser.base_url
         return is_on_base_url or is_on_home_route
+   

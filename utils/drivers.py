@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import (NoSuchElementException, TimeoutException)
 
 
 def setup_driver_environ():
@@ -50,6 +51,15 @@ class DriverWrapper:
     def get_waited_visible_element(self, locator, timeout=10):
         wait = WebDriverWait(self.driver, timeout)
         return wait.until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locator)))
+
+    def is_element_visible(self, locator, timeout=10):
+        try:
+            element = self.get_waited_visible_element(locator, timeout)
+        except (NoSuchElementException, TimeoutException):
+            return False
+        if element is not None:
+            return element.is_displayed()
+        return False
 
     def switch_to_default(self):
         self.driver.switch_to.window(self.main_window_handle)

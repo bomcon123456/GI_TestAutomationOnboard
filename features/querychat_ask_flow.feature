@@ -12,20 +12,17 @@ Feature: QueryChat ask flow
     And I enter password
     And I enter confirm password
     And I press sign up
-    Then TermsConditionsModal should be presented
+    Then Asker's TermsConditionsModal should be presented
     When I press Next
     Then I should be redirected to AskerHomePage
     # Expert register
     When Expert is on ExpertHomePage
-    And Expert presses login button
-    Then A dropdown should show up
-    When Expert presses Signup
-    Then The dropdown should show sign up form
-    When Expert enters email
+    And Expert open SignupDropdown
+    And Expert enters email
     And Expert enters password
     And Expert enters confirm password
     And Expert click Sign Up button
-    Then TermsConditionsModal should be presented
+    Then Expert's TermsConditionsModal should be presented
     When Expert presses Next
     Then Expert should be redirected to ExpertOnboardPage
     When Admin bypass that expert
@@ -33,9 +30,9 @@ Feature: QueryChat ask flow
     And Expert press Start Working Button
     Then Expert should see the ExpertWorkspacePage
     # Start querying
-    When I post a question
-    Then Expert should see that question
-    When Expert claims the question
-    Then I should see ProblemExpertIntroModal
-    When I press GotIt button
-    Then I should be in the same room with that expert
+#    When I post a question
+#    Then Expert should see that question
+#    When Expert claims the question
+#    Then I should see ProblemExpertIntroModal
+#    When I press GotIt button
+#    Then I should be in the same room with that expert

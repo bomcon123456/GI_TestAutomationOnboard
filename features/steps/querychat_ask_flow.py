@@ -3,10 +3,13 @@ import time
 from behave import *
 
 from dev_configs import (ASKER_EMAIL_PREFIX, EXPERT_EMAIL_PREFIX, PASSWORD_COMMON)
+from pom.admin.admin_page import AdminPage
 from pom.asker.asker_home_page import AskerHomePage
 from pom.asker.asker_login_modal import AskerLoginModal
 from pom.asker.asker_signup_modal import AskerSignupModal
 from pom.common.terms_conditions_modal import TermsConditionsModal
+from pom.expert.expert_home_page import ExpertHomepage
+from pom.expert.expert_work_page import ExpertWorkPage
 from utils.email_gen import generate_email
 
 use_step_matcher("re")
@@ -49,10 +52,10 @@ def step_impl(context):
 
 @step("I press sign up")
 def step_impl(context):
-    context.asker_signup_modal.click_signup_button()
+    context.asker_signup_modal.click_signup_link()
 
 
-@then("TermsConditionsModal should be presented")
+@then("Asker's TermsConditionsModal should be presented")
 def step_impl(context):
     asker_terms_and_conditions_modal = TermsConditionsModal(context.asker)
     assert asker_terms_and_conditions_modal.is_visible()
@@ -73,122 +76,79 @@ def step_impl(context):
 
 @when("Expert is on ExpertHomePage")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When Expert is on ExpertHomePage')
+    expert_homepage = ExpertHomepage(context.expert)
+    assert expert_homepage.is_active()
+    context.expert_homepage = expert_homepage
 
 
-@step("Expert presses login button")
+@step("Expert open SignupDropdown")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And Expert presses login button')
-
-
-@then("A dropdown should show up")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then A dropdown should show up')
-
-
-@when("Expert presses Signup")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When Expert presses Signup')
-
-
-@then("The dropdown should show sign up form")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then The dropdown should show sign up form')
+    context.expert_homepage.click_login_button()
+    context.expert_homepage.click_signup_link()
 
 
 @when("Expert enters email")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When Expert enters email')
+    expert_email = generate_email(EXPERT_EMAIL_PREFIX)
+    context.expert_homepage.fill_email(expert_email)
 
 
 @step("Expert enters password")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And Expert enters password')
+    context.expert_homepage.fill_password(PASSWORD_COMMON)
 
 
 @step("Expert enters confirm password")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And Expert enters confirm password')
+    context.expert_homepage.fill_confirm_password(PASSWORD_COMMON)
 
 
 @step("Expert click Sign Up button")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And Expert click Sign Up button')
+    context.expert_homepage.click_signup_button()
+
+
+@then("Expert's TermsConditionsModal should be presented")
+def step_impl(context):
+    expert_terms_and_conditions_modal = TermsConditionsModal(context.expert)
+    assert expert_terms_and_conditions_modal.is_visible()
+    context.expert_terms_and_conditions_modal = expert_terms_and_conditions_modal
 
 
 @when("Expert presses Next")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When Expert presses Next')
+    context.expert_terms_and_conditions_modal.click_next_button()
 
 
 @then("Expert should be redirected to ExpertOnboardPage")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then Expert should be redirected to ExpertOnboardPage')
+    assert context.expert_homepage.is_active()
 
 
 @when("Admin bypass that expert")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: When Admin bypass that expert')
+    admin_page = AdminPage(context.admin)
+    admin_page.login_and_approve_newest_expert()
 
 
 @step("Expert go to ExpertHomePage")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And Expert go to ExpertHomePage')
+    context.expert.go_to_homepage()
+    assert context.expert_homepage.is_active()
 
 
 @step("Expert press Start Working Button")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: And Expert press Start Working Button')
+    context.expert_homepage.click_intro_skip_button()
+    context.expert_homepage.click_start_working_button()
 
 
 @then("Expert should see the ExpertWorkspacePage")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    raise NotImplementedError(u'STEP: Then Expert should see the ExpertWorkspacePage')
+    expert_workspace_page = ExpertWorkPage(context.expert)
+    assert expert_workspace_page.is_loaded()
+    assert expert_workspace_page.is_active()
+    context.expert_workspace_page = expert_workspace_page
 
 
 @when("I post a question")

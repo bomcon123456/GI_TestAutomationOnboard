@@ -8,13 +8,7 @@ class BaseModal:
         self.close_button_locator = '.close'
 
     def is_visible(self):
-        try:
-            element = self.browser.get_waited_visible_element(self.modal_locator)
-        except (NoSuchElementException, TimeoutException):
-            return False
-        if element is not None:
-            return element.is_displayed()
-        return False
+        return self.browser.is_element_visible(self.modal_locator)
 
     def is_element_inside_clickable(self, timeout=10):
         try:

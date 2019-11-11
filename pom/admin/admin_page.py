@@ -5,7 +5,7 @@ from pom.common.base.base_page import BasePage
 from utils.bypass_onboard import bypass_onboard_expert
 
 
-class AdminLoginPage(BasePage):
+class AdminPage(BasePage):
     google_login_button_locator = '.btn.btn-google.btn-lg.btn-social'
     email_next_button_locator = '[jsname=\'k77Iif\'] .snByac'
     password_next_button_locator = '[jsname=\'k77Iif\'] .snByac'

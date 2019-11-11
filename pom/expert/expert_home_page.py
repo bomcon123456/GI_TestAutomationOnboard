@@ -25,12 +25,20 @@ class ExpertHomepage(BasePage):
     def click_login_button(self):
         self.browser.get_waited_visible_element(self.login_locator).click()
 
-    def click_signup_button(self):
+    def click_signup_link(self):
         self.browser.find_element(self.open_signup_locator).click()
         # after click next, will be redirected to 'https://expert-query.got-it.io/onboarding'
+
+    def click_signup_button(self):
+        self.browser.get_waited_clickable_element(self.sign_up_button_locator).click()
 
     def click_intro_skip_button(self):
         self.browser.get_waited_clickable_element(self.intro_skip_button_locator).click()
 
     def click_start_working_button(self):
         self.browser.get_waited_clickable_element(self.start_working_button_locator).click()
+
+    def is_active(self):
+        is_on_home_route = '/home' in self.browser.driver.current_url
+        is_on_base_url = self.browser.driver.current_url == self.browser.base_url
+        return is_on_base_url or is_on_home_route

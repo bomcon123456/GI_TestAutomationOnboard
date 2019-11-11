@@ -40,10 +40,6 @@ class DriverWrapper:
     def find_and_send_keys(self, locator, value):
         self.driver.find_element_by_css_selector(locator).send_keys(value)
 
-    def wait_until_invisible(self, locator, timeout=10):
-        wait = WebDriverWait(self.driver, timeout)
-        wait.until(expected_conditions.invisibility_of_element_located((By.CSS_SELECTOR, locator)))
-
     def get_waited_clickable_element(self, locator, timeout=10):
         wait = WebDriverWait(self.driver, timeout)
         return wait.until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, locator)))

@@ -5,7 +5,7 @@ from utils.drivers import DriverWrapper
 
 @fixture
 def asker_setup(context):
-    asker = DriverWrapper(base_url='https://asker-query.got-it.io/')
+    asker = DriverWrapper(url='https://asker-query.got-it.io/')
     context.asker = asker
     yield context.asker
     context.asker.driver.quit()
@@ -13,7 +13,7 @@ def asker_setup(context):
 
 @fixture
 def expert_setup(context):
-    expert = DriverWrapper(base_url='https://expert-query.got-it.io/')
+    expert = DriverWrapper(url='https://expert-query.got-it.io/')
     context.expert = expert
     yield context.expert
     context.expert.driver.quit()
@@ -21,7 +21,7 @@ def expert_setup(context):
 
 @fixture
 def admin_setup(context):
-    admin = DriverWrapper(base_url='https://admin-query.got-it.io/')
+    admin = DriverWrapper(url='https://admin-query.got-it.io/')
     context.admin = admin
     yield context.admin
 

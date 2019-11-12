@@ -25,10 +25,9 @@ class DriverWrapper:
         Since we want to use CSS Selectors, all the find will implicitly meaning find by css selectors
     """
 
-    def __init__(self, base_url):
+    def __init__(self, url):
         self.driver = create_raw_driver()
-        self.base_url = base_url
-        self.driver.get(base_url)
+        self.driver.get(url)
         self.main_window_handle = self.driver.current_window_handle
 
     def find_element(self, locator):
@@ -53,9 +52,7 @@ class DriverWrapper:
             element = self.get_waited_visible_element(locator, timeout)
         except (NoSuchElementException, TimeoutException):
             return False
-        if element is not None:
-            return element.is_displayed()
-        return False
+        return element.is_displayed()
 
     def switch_to_default(self):
         self.driver.switch_to.window(self.main_window_handle)
@@ -66,5 +63,5 @@ class DriverWrapper:
             if url in self.driver.current_url:
                 break
 
-    def go_to_homepage(self):
-        self.driver.get(self.base_url)
+    def go_to_page(self, url):
+        self.driver.get(url)

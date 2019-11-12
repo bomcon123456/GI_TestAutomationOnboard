@@ -2,6 +2,7 @@ from pom.common.base.base_page import BasePage
 
 
 class ExpertHomepage(BasePage):
+    url = 'https://expert-query.got-it.io/'
     # Locators for sign-up
     login_locator = '[role=\'button\']'
     open_signup_locator = '.dropdown strong'
@@ -40,5 +41,5 @@ class ExpertHomepage(BasePage):
 
     def is_active(self):
         is_on_home_route = '/home' in self.browser.driver.current_url
-        is_on_base_url = self.browser.driver.current_url == self.browser.base_url
+        is_on_base_url = self.browser.driver.current_url == self.url
         return is_on_base_url or is_on_home_route

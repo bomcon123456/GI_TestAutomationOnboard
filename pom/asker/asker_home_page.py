@@ -2,6 +2,7 @@ from pom.common.base.base_page import BasePage
 
 
 class AskerHomePage(BasePage):
+    url = 'https://asker-query.got-it.io/'
     login_button_locator = '#test-login-button'
     question_field_locator = 'textarea[name=\'text\']'
     connect_now_for_free_button_locator = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
@@ -26,6 +27,5 @@ class AskerHomePage(BasePage):
 
     def is_active(self):
         is_on_home_route = '/home' in self.browser.driver.current_url
-        is_on_base_url = self.browser.driver.current_url == self.browser.base_url
+        is_on_base_url = self.browser.driver.current_url == self.url
         return is_on_base_url or is_on_home_route
-   

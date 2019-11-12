@@ -27,7 +27,7 @@ class AskerHomePage(BasePage):
                        'dui nunc sagittis mi, ac gravida sapien magna at ipsum.'
         self.browser.get_waited_visible_element(self.question_field_locator).send_keys(problem_text)
 
-    def is_active(self):
+    def is_presented(self):
         is_on_home_route = '/home' in self.browser.driver.current_url
         is_on_base_url = self.browser.driver.current_url == self.url
         return is_on_base_url or is_on_home_route

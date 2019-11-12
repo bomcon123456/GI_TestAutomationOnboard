@@ -41,7 +41,7 @@ class ExpertHomepage(BasePage):
     def click_start_working_button(self):
         self.browser.get_waited_clickable_element(self.start_working_button_locator).click()
 
-    def is_active(self):
+    def is_presented(self):
         is_on_home_route = '/home' in self.browser.driver.current_url
         is_on_base_url = self.browser.driver.current_url == self.url
         return is_on_base_url or is_on_home_route

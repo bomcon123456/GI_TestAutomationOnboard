@@ -18,7 +18,7 @@ class ExpertWorkPage(BasePage):
     def is_loaded(self):
         return self.browser.is_element_visible(self.waiting_question_locator)
 
-    def is_active(self):
+    def is_presented(self):
         is_on_workspace_route = '/workspace' in self.browser.driver.current_url
         return is_on_workspace_route
 

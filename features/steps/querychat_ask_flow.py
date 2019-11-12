@@ -4,9 +4,9 @@ from dev_configs import (ASKER_EMAIL_PREFIX, EXPERT_EMAIL_PREFIX, PASSWORD_COMMO
 from pom.admin.admin_page import AdminPage
 from pom.asker.asker_home_page import AskerHomePage
 from pom.asker.asker_login_modal import AskerLoginModal
-from pom.asker.asker_signup_modal import AskerSignupModal
 from pom.asker.asker_problem_expert_intro_modal import AskerProblemExpertIntroModal
 from pom.asker.asker_problem_page import AskerProblemPage
+from pom.asker.asker_signup_modal import AskerSignupModal
 from pom.common.terms_conditions_modal import TermsConditionsModal
 from pom.expert.expert_home_page import ExpertHomepage
 from pom.expert.expert_work_page import ExpertWorkPage
@@ -18,7 +18,7 @@ use_step_matcher("re")
 @given("I'm on Asker Home Page")
 def step_impl(context):
     asker_homepage = AskerHomePage(context.asker)
-    assert asker_homepage.is_active()
+    assert asker_homepage.is_presented()
     context.asker_homepage = asker_homepage
 
 
@@ -26,11 +26,11 @@ def step_impl(context):
 def step_impl(context):
     context.asker_homepage.click_login_button()
     asker_login_modal = AskerLoginModal(context.asker)
-    assert asker_login_modal.is_visible()
+    assert asker_login_modal.is_presented()
     assert asker_login_modal.is_element_inside_clickable()
     asker_login_modal.click_signup_link()
     asker_signup_modal = AskerSignupModal(context.asker)
-    assert asker_signup_modal.is_visible()
+    assert asker_signup_modal.is_presented()
     context.asker_signup_modal = asker_signup_modal
 
 
@@ -58,7 +58,7 @@ def step_impl(context):
 @then("Asker's Terms Conditions Modal should be presented")
 def step_impl(context):
     asker_terms_and_conditions_modal = TermsConditionsModal(context.asker)
-    assert asker_terms_and_conditions_modal.is_visible()
+    assert asker_terms_and_conditions_modal.is_presented()
     context.asker_terms_and_conditions_modal = asker_terms_and_conditions_modal
 
 
@@ -70,13 +70,13 @@ def step_impl(context):
 
 @then("I should be redirected to Asker Home Page")
 def step_impl(context):
-    assert context.asker_homepage.is_active()
+    assert context.asker_homepage.is_presented()
 
 
 @when("Expert is on Expert Home Page")
 def step_impl(context):
     expert_homepage = ExpertHomepage(context.expert)
-    assert expert_homepage.is_active()
+    assert expert_homepage.is_presented()
     context.expert_homepage = expert_homepage
 
 
@@ -110,7 +110,7 @@ def step_impl(context):
 @then("Expert's Terms Conditions Modal should be presented")
 def step_impl(context):
     expert_terms_and_conditions_modal = TermsConditionsModal(context.expert)
-    assert expert_terms_and_conditions_modal.is_visible()
+    assert expert_terms_and_conditions_modal.is_presented()
     context.expert_terms_and_conditions_modal = expert_terms_and_conditions_modal
 
 
@@ -121,7 +121,7 @@ def step_impl(context):
 
 @then("Expert should be redirected to Expert Onboard Page")
 def step_impl(context):
-    assert context.expert_homepage.is_active()
+    assert context.expert_homepage.is_presented()
 
 
 @when("Admin bypass that expert")
@@ -133,7 +133,7 @@ def step_impl(context):
 @step("Expert go to Expert Home Page")
 def step_impl(context):
     context.expert.go_to_page('https://expert-query.got-it.io/')
-    assert context.expert_homepage.is_active()
+    assert context.expert_homepage.is_presented()
 
 
 @step("Expert press Start Working Button")
@@ -146,7 +146,7 @@ def step_impl(context):
 def step_impl(context):
     expert_workspace_page = ExpertWorkPage(context.expert)
     assert expert_workspace_page.is_loaded()
-    assert expert_workspace_page.is_active()
+    assert expert_workspace_page.is_presented()
     context.expert_workspace_page = expert_workspace_page
 
 
@@ -170,12 +170,12 @@ def step_impl(context):
 
 @when("I press GotIt button")
 def step_impl(context):
-    if context.asker_problem_expert_intro.is_visible():
+    if context.asker_problem_expert_intro.is_presented():
         context.asker_problem_expert_intro.click_gotit_button()
 
 
 @then("I should be in the same room with that expert")
 def step_impl(context):
     asker_problem_page = AskerProblemPage(context.asker)
-    assert asker_problem_page.is_active()
+    assert asker_problem_page.is_presented()
     assert context.expert_workspace_page.is_matched()

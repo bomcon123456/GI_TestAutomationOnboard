@@ -1,6 +1,5 @@
-from selenium.webdriver.common.by import By
-
 from selenium.common.exceptions import (NoSuchElementException, TimeoutException)
+from selenium.webdriver.common.by import By
 
 
 class BaseModal:
@@ -10,7 +9,7 @@ class BaseModal:
         self.browser = browser
         self.close_button_locator = (By.CSS_SELECTOR, '.close')
 
-    def is_visible(self):
+    def is_presented(self):
         if self.modal_locator:
             return self.browser.is_element_visible(self.modal_locator)
         return None

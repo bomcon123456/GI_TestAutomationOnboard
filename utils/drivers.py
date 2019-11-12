@@ -1,6 +1,7 @@
 import os
+
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import (NoSuchElementException, TimeoutException)
@@ -11,12 +12,13 @@ def setup_driver_environ():
     os.environ['webdriver.chrome.driver'] = chrome_driver_dir
 
 
-def create_raw_driver():
+def create_raw_driver(headless):
     chrome_driver_dir = "libs/chromedriver"
-    driver = webdriver.Chrome(chrome_driver_dir)
-    # driver.maximize_window()
-    # driver.implicitly_wait(2)
-    return driver
+    if headless:
+        options = Options()
+        options.headless = True
+        return webdriver.Chrome(chrome_driver_dir, chrome_options=options)
+    return webdriver.Chrome(chrome_driver_dir)
 
 
 class DriverWrapper:
@@ -25,8 +27,8 @@ class DriverWrapper:
         Since we want to use CSS Selectors, all the find will implicitly meaning find by css selectors
     """
 
-    def __init__(self, url):
-        self.driver = create_raw_driver()
+    def __init__(self, url, headless=False):
+        self.driver = create_raw_driver(headless)
         self.driver.get(url)
         self.main_window_handle = self.driver.current_window_handle
 

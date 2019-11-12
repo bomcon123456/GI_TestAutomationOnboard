@@ -1,18 +1,20 @@
+from selenium.webdriver.common.by import By
+
 from pom.common.base.base_page import BasePage
 
 
 class ExpertHomepage(BasePage):
     url = 'https://expert-query.got-it.io/'
     # Locators for sign-up
-    login_locator = '[role=\'button\']'
-    open_signup_locator = '.dropdown strong'
-    email_locator = 'input[name=\'email\']'
-    password_locator = 'input[name=\'password\']'
-    confirm_password_locator = 'input[name=\'confirmPassword\']'
-    sign_up_button_locator = 'form > .btn.btn-block.btn-primary.m-t-10'
+    login_locator = (By.CSS_SELECTOR, '[role=\'button\']')
+    open_signup_locator = (By.CSS_SELECTOR, '.dropdown strong')
+    email_locator = (By.CSS_SELECTOR, 'input[name=\'email\']')
+    password_locator = (By.CSS_SELECTOR, 'input[name=\'password\']')
+    confirm_password_locator = (By.CSS_SELECTOR, 'input[name=\'confirmPassword\']')
+    sign_up_button_locator = (By.CSS_SELECTOR, 'form > .btn.btn-block.btn-primary.m-t-10')
     # Locators for start working first time
-    intro_skip_button_locator = 'button#js-introSkip'
-    start_working_button_locator = 'a[role=\'presentation\']'
+    intro_skip_button_locator = (By.CSS_SELECTOR, 'button#js-introSkip')
+    start_working_button_locator = (By.CSS_SELECTOR, 'a[role=\'presentation\']')
 
     def fill_email(self, email):
         self.browser.find_and_send_keys(self.email_locator, email)

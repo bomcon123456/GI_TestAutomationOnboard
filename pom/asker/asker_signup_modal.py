@@ -1,13 +1,15 @@
+from selenium.webdriver.common.by import By
+
 from pom.common.base.base_modal import BaseModal
 
 
 class AskerSignupModal(BaseModal):
-    modal_locator = '#modal-signup'
-    email_locator = 'div[role=\'document\'] input[name=\'email\']'
-    password_locator = 'input[name=\'password\']'
-    confirm_password_locator = 'input[name=\'confirmPassword\']'
-    sign_up_button_locator = 'button#sign-up-button'
-    next_button_locator = 'div[role=\'document\'] .gi-Button.gi-Button--accent.gi-Button--lg'
+    modal_locator = (By.CSS_SELECTOR, '#modal-signup')
+    email_locator = (By.CSS_SELECTOR, 'div[role=\'document\'] input[name=\'email\']')
+    password_locator = (By.CSS_SELECTOR, 'input[name=\'password\']')
+    confirm_password_locator = (By.CSS_SELECTOR, 'input[name=\'confirmPassword\']')
+    sign_up_button_locator = (By.CSS_SELECTOR, 'button#sign-up-button')
+    next_button_locator = (By.CSS_SELECTOR, 'div[role=\'document\'] .gi-Button.gi-Button--accent.gi-Button--lg')
 
     def fill_email(self, email):
         self.browser.find_and_send_keys(self.email_locator, email)

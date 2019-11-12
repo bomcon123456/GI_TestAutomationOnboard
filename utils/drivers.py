@@ -30,26 +30,26 @@ class DriverWrapper:
         self.driver.get(url)
         self.main_window_handle = self.driver.current_window_handle
 
-    def find_element(self, locator):
-        return self.driver.find_element_by_css_selector(locator)
+    def find_element(self, selector_locator):
+        return self.driver.find_element(*selector_locator)
 
-    def find_elements(self, locator):
-        return self.driver.find_elements_by_css_selector(locator)
+    def find_elements(self, selector_locator):
+        return self.driver.find_elements(*selector_locator)
 
-    def find_and_send_keys(self, locator, value):
-        self.driver.find_element_by_css_selector(locator).send_keys(value)
+    def find_and_send_keys(self, selector_locator, value):
+        self.driver.find_element(*selector_locator).send_keys(value)
 
-    def get_waited_clickable_element(self, locator, timeout=10):
+    def get_waited_clickable_element(self, selector_locator, timeout=10):
         wait = WebDriverWait(self.driver, timeout)
-        return wait.until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, locator)))
+        return wait.until(expected_conditions.element_to_be_clickable(selector_locator))
 
-    def get_waited_visible_element(self, locator, timeout=10):
+    def get_waited_visible_element(self, selector_locator, timeout=10):
         wait = WebDriverWait(self.driver, timeout)
-        return wait.until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locator)))
+        return wait.until(expected_conditions.visibility_of_element_located(selector_locator))
 
-    def is_element_visible(self, locator, timeout=10):
+    def is_element_visible(self, selector_locator, timeout=10):
         try:
-            element = self.get_waited_visible_element(locator, timeout)
+            element = self.get_waited_visible_element(selector_locator, timeout)
         except (NoSuchElementException, TimeoutException):
             return False
         return element.is_displayed()

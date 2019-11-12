@@ -1,12 +1,14 @@
+from selenium.webdriver.common.by import By
+
 from pom.common.base.base_page import BasePage
 
 
 class AskerHomePage(BasePage):
     url = 'https://asker-query.got-it.io/'
-    login_button_locator = '#test-login-button'
-    question_field_locator = 'textarea[name=\'text\']'
-    connect_now_for_free_button_locator = '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100'
-    proceed_button_locator = '[class=\'gi-Button gi-Button--primary u-width-100\']'
+    login_button_locator = (By.CSS_SELECTOR, '#test-login-button')
+    question_field_locator = (By.CSS_SELECTOR, 'textarea[name=\'text\']')
+    connect_now_for_free_button_locator = (By.CSS_SELECTOR, '.gi-Button.gi-Button--accent.gi-Button--lg.u-width-100')
+    proceed_button_locator = (By.CSS_SELECTOR, '[class=\'gi-Button gi-Button--primary u-width-100\']')
 
     def click_connect_now_for_free_button(self):
         self.browser.get_waited_clickable_element(self.connect_now_for_free_button_locator).click()
